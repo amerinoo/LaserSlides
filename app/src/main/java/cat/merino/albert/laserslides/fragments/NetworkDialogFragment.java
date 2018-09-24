@@ -22,9 +22,10 @@ public class NetworkDialogFragment extends DialogFragment {
     private boolean mListenIncoming;
     private String mDeviceIp;
     private int mInPort;
+    private String mStartPath;
     private NetworkDialogListener mCallback;
 
-    public static NetworkDialogFragment newInstance(String ipAddress, int port, boolean listenIncoming, String deviceIpAddress, int inPort) {
+    public static NetworkDialogFragment newInstance(String ipAddress, int port, boolean listenIncoming, String deviceIpAddress, int inPort, String startPath) {
         NetworkDialogFragment frg = new NetworkDialogFragment();
         Bundle args = new Bundle();
         args.putString("ipAddress", ipAddress);
@@ -32,6 +33,7 @@ public class NetworkDialogFragment extends DialogFragment {
         args.putBoolean("listenIncoming", listenIncoming);
         args.putString("deviceIp", deviceIpAddress);
         args.putInt("inPort", inPort);
+        args.putString("startPath", startPath);
         frg.setArguments(args);
         return frg;
     }
@@ -46,6 +48,7 @@ public class NetworkDialogFragment extends DialogFragment {
         this.mListenIncoming = args.getBoolean("listenIncoming");
         this.mDeviceIp = (String) args.get("deviceIp");
         this.mInPort = args.getInt("inPort");
+        this.mStartPath = args.getString("startPath");
     }
 
     @Override
@@ -64,6 +67,10 @@ public class NetworkDialogFragment extends DialogFragment {
         EditText etNetworkInPort = (EditText) networkView.findViewById(R.id.etNetworkInPort);
         etNetworkInPort.setText(Integer.toString(this.mInPort));
 
+        EditText etStartPath = (EditText) networkView.findViewById(R.id.etStartPath);
+        etStartPath.setText(this.mStartPath);
+
+
         CheckBox cbListenIncoming = (CheckBox) networkView.findViewById(R.id.cbListenIncoming);
         cbListenIncoming.setChecked(this.mListenIncoming);
 
@@ -75,6 +82,9 @@ public class NetworkDialogFragment extends DialogFragment {
                 EditText etNetworkIP = (EditText) alert.findViewById(R.id.etNetworkIP);
                 String newIpAddress = etNetworkIP.getText().toString();
 
+                EditText etStartPath = (EditText) alert.findViewById(R.id.etStartPath);
+                String startPath = etStartPath.getText().toString();
+
                 EditText etNetworkPort = (EditText) alert.findViewById(R.id.etNetworkPort);
                 int newPort = Integer.parseInt(etNetworkPort.getText().toString());
 
@@ -84,8 +94,9 @@ public class NetworkDialogFragment extends DialogFragment {
                 EditText etInPort = (EditText) alert.findViewById(R.id.etNetworkInPort);
                 int newInPort = Integer.parseInt(etInPort.getText().toString());
 
+
                 if (mCallback != null) {
-                    mCallback.onSettingsSaved(newIpAddress, newPort, listenIncoming, newInPort);
+                    mCallback.onSettingsSaved(newIpAddress, newPort, listenIncoming, newInPort, startPath);
                 }
             }
         });
@@ -97,6 +108,6 @@ public class NetworkDialogFragment extends DialogFragment {
     }
 
     public interface NetworkDialogListener {
-        public void onSettingsSaved(String ipAddress, int port, boolean listenIncoming, int incomingPort);
+        public void onSettingsSaved(String ipAddress, int port, boolean listenIncoming, int incomingPort, String startPath);
     }
 }

@@ -76,6 +76,7 @@ public class QuickOSCActivity extends AppCompatActivity {
     private OSCPortOut oscPortOut = null;
     private boolean mListenIncoming = true;
     private int inPort = 8090;
+    public String OSC_START_PATH = "/";
     private OSCPortIn oscPortIn;
     private OSCListener btnListener;
     private OSCListener toggleListener;
@@ -91,134 +92,21 @@ public class QuickOSCActivity extends AppCompatActivity {
 
         debugTextView = (TextView) findViewById(R.id.textView1);
 
-        Button button1 = (Button) findViewById(R.id.button1);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(0,
-                oscSettingsHashtable.containsKey("btn1-lbl") ? oscSettingsHashtable.get("btn1-lbl") : "btn1",
-                oscSettingsHashtable.get("btn1-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn1-trgbutrel")),
-                oscSettingsHashtable.get("btn1-butrel"),
-                button1, this));
-
-        Button button2 = (Button) findViewById(R.id.button2);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(1,
-                oscSettingsHashtable.containsKey("btn2-lbl") ? oscSettingsHashtable.get("btn2-lbl") : "btn2",
-                oscSettingsHashtable.get("btn2-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn2-trgbutrel")),
-                oscSettingsHashtable.get("btn2-butrel"),
-                button2, this));
-
-        Button button3 = (Button) findViewById(R.id.button3);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(2,
-                oscSettingsHashtable.containsKey("btn3-lbl") ? oscSettingsHashtable.get("btn3-lbl") : "btn3",
-                oscSettingsHashtable.get("btn3-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn3-trgbutrel")),
-                oscSettingsHashtable.get("btn3-butrel"),
-                button3, this));
-
-        Button button4 = (Button) findViewById(R.id.button4);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(3,
-                oscSettingsHashtable.containsKey("btn4-lbl") ? oscSettingsHashtable.get("btn4-lbl") : "btn4",
-                oscSettingsHashtable.get("btn4-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn4-trgbutrel")),
-                oscSettingsHashtable.get("btn4-butrel"),
-                button4, this));
-
-        Button button5 = (Button) findViewById(R.id.button5);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(4,
-                oscSettingsHashtable.containsKey("btn5-lbl") ? oscSettingsHashtable.get("btn5-lbl") : "btn5",
-                oscSettingsHashtable.get("btn5-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn5-trgbutrel")),
-                oscSettingsHashtable.get("btn5-butrel"),
-                button5, this));
-
-        Button button6 = (Button) findViewById(R.id.button6);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(5,
-                oscSettingsHashtable.containsKey("btn6-lbl") ? oscSettingsHashtable.get("btn6-lbl") : "btn6",
-                oscSettingsHashtable.get("btn6-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn6-trgbutrel")),
-                oscSettingsHashtable.get("btn6-butrel"),
-                button6, this));
-
-        Button button7 = (Button) findViewById(R.id.button7);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(6,
-                oscSettingsHashtable.containsKey("btn7-lbl") ? oscSettingsHashtable.get("btn7-lbl") : "btn7",
-                oscSettingsHashtable.get("btn7-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn7-trgbutrel")),
-                oscSettingsHashtable.get("btn7-butrel"),
-                button7, this));
-
-        Button button8 = (Button) findViewById(R.id.button8);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(7,
-                oscSettingsHashtable.containsKey("btn8-lbl") ? oscSettingsHashtable.get("btn8-lbl") : "btn8",
-                oscSettingsHashtable.get("btn8-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn8-trgbutrel")),
-                oscSettingsHashtable.get("btn8-butrel"),
-                button8, this));
-
-        Button button9 = (Button) findViewById(R.id.button9);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(8,
-                oscSettingsHashtable.containsKey("btn9-lbl") ? oscSettingsHashtable.get("btn9-lbl") : "btn9",
-                oscSettingsHashtable.get("btn9-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn9-trgbutrel")),
-                oscSettingsHashtable.get("btn9-butrel"),
-                button9, this));
-
-        Button button10 = (Button) findViewById(R.id.button10);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(9,
-                oscSettingsHashtable.containsKey("btn10-lbl") ? oscSettingsHashtable.get("btn10-lbl") : "btn10",
-                oscSettingsHashtable.get("btn10-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn10-trgbutrel")),
-                oscSettingsHashtable.get("btn10-butrel"),
-                button10, this));
-
-        Button button11 = (Button) findViewById(R.id.button11);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(10,
-                oscSettingsHashtable.containsKey("btn11-lbl") ? oscSettingsHashtable.get("btn11-lbl") : "btn11",
-                oscSettingsHashtable.get("btn11-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn11-trgbutrel")),
-                oscSettingsHashtable.get("btn11-butrel"),
-                button11, this));
-
-        Button button12 = (Button) findViewById(R.id.button12);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(11,
-                oscSettingsHashtable.containsKey("btn12-lbl") ? oscSettingsHashtable.get("btn12-lbl") : "btn12",
-                oscSettingsHashtable.get("btn12-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn12-trgbutrel")),
-                oscSettingsHashtable.get("btn12-butrel"),
-                button12, this));
-
-        Button button13 = (Button) findViewById(R.id.button13);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(12,
-                oscSettingsHashtable.containsKey("btn13-lbl") ? oscSettingsHashtable.get("btn13-lbl") : "btn13",
-                oscSettingsHashtable.get("btn13-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn13-trgbutrel")),
-                oscSettingsHashtable.get("btn13-butrel"),
-                button13, this));
-
-        Button button14 = (Button) findViewById(R.id.button14);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(13,
-                oscSettingsHashtable.containsKey("btn14-lbl") ? oscSettingsHashtable.get("btn14-lbl") : "btn14",
-                oscSettingsHashtable.get("btn14-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn14-trgbutrel")),
-                oscSettingsHashtable.get("btn14-butrel"),
-                button14, this));
-
-        Button button15 = (Button) findViewById(R.id.button15);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(14,
-                oscSettingsHashtable.containsKey("btn15-lbl") ? oscSettingsHashtable.get("btn15-lbl") : "btn15",
-                oscSettingsHashtable.get("btn15-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn15-trgbutrel")),
-                oscSettingsHashtable.get("btn15-butrel"),
-                button15, this));
-
-        Button button16 = (Button) findViewById(R.id.button16);
-        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(15,
-                oscSettingsHashtable.containsKey("btn16-lbl") ? oscSettingsHashtable.get("btn16-lbl") : "btn16",
-                oscSettingsHashtable.get("btn16-butpres"),
-                Boolean.parseBoolean(oscSettingsHashtable.get("btn16-trgbutrel")),
-                oscSettingsHashtable.get("btn16-butrel"),
-                button16, this));
-
+        int[] ids = {
+                R.id.button1, R.id.button2, R.id.button3, R.id.button4,
+                R.id.button5, R.id.button6, R.id.button7, R.id.button8,
+                R.id.button9, R.id.button10, R.id.button11, R.id.button12,
+                R.id.button13, R.id.button14, R.id.button15, R.id.button16,
+                R.id.button17, R.id.button18, R.id.button19, R.id.button20,
+                R.id.button21, R.id.button22, R.id.button23, R.id.button24,
+                R.id.button21, R.id.button22, R.id.button23, R.id.button24,
+                R.id.button25, R.id.button26, R.id.button27, R.id.button28,
+                R.id.button29, R.id.button30, R.id.button31, R.id.button32,
+                R.id.button33, R.id.button34, R.id.button35, R.id.button36,
+        };
+        for (int i = 0; i < ids.length; i++) {
+            addButtonToList(ids[i], i);
+        }
 
         ToggleButton toggle1 = (ToggleButton) findViewById(R.id.toggleButton1);
         toggleOSCWrapperList.add(ToggleOSCWrapper.createInstance(0,
@@ -462,6 +350,17 @@ public class QuickOSCActivity extends AppCompatActivity {
             }
         };
         checkWifiState();
+    }
+
+    private void addButtonToList(int id, int num) {
+        String key = "btn" + (num + 1);
+        Button button = (Button) findViewById(id);
+        buttonOSCWrapperList.add(ButtonOSCWrapper.createInstance(num,
+                oscSettingsHashtable.containsKey(key + "-lbl") ? oscSettingsHashtable.get(key + "-lbl") : key,
+                oscSettingsHashtable.get(key + "-butpres"),
+                Boolean.parseBoolean(oscSettingsHashtable.get(key + "-trgbutrel")),
+                oscSettingsHashtable.get(key + "-butrel"),
+                button, this));
     }
 
     @Override
@@ -742,12 +641,13 @@ public class QuickOSCActivity extends AppCompatActivity {
         }
         ft.addToBackStack(null);
 
-        final NetworkDialogFragment frg = NetworkDialogFragment.newInstance(ipAddress, port, mListenIncoming, Utils.getIpAddress(true), inPort);
+        final NetworkDialogFragment frg = NetworkDialogFragment.newInstance(ipAddress, port, mListenIncoming, Utils.getIpAddress(true), inPort, OSC_START_PATH);
         frg.setNetworkDialogListener(new NetworkDialogFragment.NetworkDialogListener() {
-            public void onSettingsSaved(String ipAddress, int port, boolean listenIncoming, int inPort) {
+            public void onSettingsSaved(String ipAddress, int port, boolean listenIncoming, int inPort, String startPath) {
                 QuickOSCActivity.this.ipAddress = ipAddress;
                 QuickOSCActivity.this.port = port;
                 QuickOSCActivity.this.inPort = inPort;
+                QuickOSCActivity.this.OSC_START_PATH = startPath;
 
                 saveNetworkSettinsIntoFile();
                 initializeOSC();
@@ -865,10 +765,11 @@ public class QuickOSCActivity extends AppCompatActivity {
      */
 
     public void sendOSC(String address, List<Object> arguments) {
+        address = OSC_START_PATH + address;
         try {
             new AsyncSendOSCTask(this, this.oscPortOut).execute(new OSCMessage(address, arguments));
         } catch (Exception exp) {
-            Toast.makeText(this, "Error Sending Message", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error Sending Message " + address, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -881,7 +782,7 @@ public class QuickOSCActivity extends AppCompatActivity {
             try {
                 FileOutputStream fos = openFileOutput(NETWORK_SETTINGS_FILE, Context.MODE_PRIVATE);
 
-                String data = ipAddress + "#" + port + "#" + mListenIncoming + "#" + inPort;
+                String data = ipAddress + "#" + port + "#" + mListenIncoming + "#" + inPort + "#" + OSC_START_PATH;
                 fos.write(data.getBytes());
                 fos.close();
             } catch (Exception exp) {
@@ -914,9 +815,11 @@ public class QuickOSCActivity extends AppCompatActivity {
             if (pieces.length > 2) {
                 mListenIncoming = Boolean.parseBoolean(pieces[2]);
                 inPort = Integer.parseInt(pieces[3]);
+                OSC_START_PATH = pieces[4];
             } else {
                 mListenIncoming = false;
                 inPort = 8090;
+                OSC_START_PATH = "/";
             }
         } catch (FileNotFoundException fnfe) {
         } catch (Exception exp) {
